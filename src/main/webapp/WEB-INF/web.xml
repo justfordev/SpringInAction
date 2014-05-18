@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+	PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+	<display-name>SpringInAction</display-name>
+	<description>
+		The project of SpringInAction is just for learning Spring.
+		justfordev.wu@gmail.com
+		See
+		http://tomcat.apache.org/tomcat-6.0-doc/appdev/web.xml.txt for more
+		information regarding this Web Descriptor File.
+	</description>
+	
+	<!-- Spring Configures --> 
+	<context-param>
+		<param-name>ContextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+</web-app>

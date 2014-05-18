@@ -1,0 +1,70 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'jetty'
+
+group 'Spring In Action'
+
+repositories {
+	mavenRepo urls: ["http://192.168.1.130:8081/nexus/content/groups/public/"]
+}
+
+dependencies {
+	mybatis = [
+		"org.mybatis:mybatis:3.2.7"
+	]
+	
+	spring_version = "3.2.8.RELEASE"
+	spring = [
+		"org.springframework:spring-core:$spring_version",
+		"org.springframework:spring-beans:$spring_version",
+		"org.springframework:spring-context:$spring_version",
+		"org.springframework:spring-web:$spring_version",
+		"org.springframework:spring-webmvc:$spring_version",
+		"org.springframework:spring-jdbc:$spring_version",
+		"org.springframework:spring-aop:$spring_version",
+		"org.springframework:spring-test:$spring_version"
+	]
+	
+	servlet = [
+		"javax.servlet:servlet-api:2.5"
+	]
+	
+	apache = [
+		"org.apache.velocity:velocity:1.7",
+		"org.apache.velocity:velocity-tools:2.0",
+	]
+	
+	commons = [
+		"commons-logging:commons-logging:1.1.1",
+		"commons-io:commons-io:2.0.1",
+		"commons-codec:commons-codec:1.5",
+		"commons-dbcp:commons-dbcp:1.4"	
+	]
+	
+	activemq = ["org.apache.activemq:activemq-all:5.9.1"]
+	
+	slf4j_version = "1.7.7"
+	slf4j = [
+		"org.slf4j:slf4j-api:$slf4j_version",
+		"org.slf4j:slf4j-log4j12:$slf4j_version"
+	]
+	
+	log4j = ["log4j:log4j:1.2.16"]
+	
+    gson = ["com.google.code.gson:gson:1.7.1"]
+
+    aspectj = ["org.aspectj:aspectjweaver:1.8.0"]
+    
+    mysql = ["mysql:mysql-connector-java:5.1.30"]
+	
+	junit = ["junit:junit:4.8.2"]
+	
+	myjar = fileTree(dir: "/lib", include: "*.jar")
+	
+	compile mybatis,spring,servlet,commons,activemq,slf4j,log4j,gson,aspectj,mysql,junit,myjar
+}
+
+task "create-dirs" << {
+   sourceSets*.java.srcDirs*.each { it.mkdirs() }
+   sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+}
